@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const vendasModel = require('../src/model/vendas.js');
-const pedidosModel = require('../src/model/pedidos.js');
+const vendasModel = require('../model/vendas.js');
+const pedidosModel = require('../model/pedidos.js');
 
 
-router.get('/vendas', async (_, res) => {
+router.get('/', async (_, res) => {
     try {
         const vendas = await vendasModel.find({}).populate('cliente', 'nome').select('cliente valorTotal');
         return res.status(200).json({ data: vendas });
