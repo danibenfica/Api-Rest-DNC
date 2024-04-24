@@ -1,0 +1,13 @@
+{
+  "name": "Api-Rest-DNC",
+  "version": "1.0.0",
+  "description": "sexto desafio da dnc",
+  "main": "index.js",
+  "repository": "https://github.com/danibenfica/Api-Rest-DNC.git",
+  "author": "Dani Benfica <103818625+danibenfica@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2"
+  }
+}
