@@ -1,3 +1,5 @@
+![Captura de tela 2024-04-27 202234](https://github.com/danibenfica/Api-Rest-DNC/assets/103818625/0140465b-de9c-4e18-88f5-2d990e080b7d)
+
 ---
 # Api-Rest-DNC
 
@@ -46,7 +48,6 @@ A aplicação oferece as seguintes funcionalidades:
 A aplicação segue uma arquitetura MVC (Model-View-Controller), onde:
 
 - **Model (Modelo)**: Define os esquemas e modelos MongoDB para cada entidade (cliente, produto, pedido, venda, estoque).
-- **Controller (Controlador)**: Implementa a lógica de negócio e interage com os modelos para realizar operações de CRUD.
 - **Rotas (Routes)**: Define as rotas HTTP que correspondem às diferentes operações disponíveis para cada recurso.
 
 ## Como Executar
@@ -73,7 +74,25 @@ yarn install
 
 ### Configuração do Banco de Dados
 
-Configure a conexão com o MongoDB no arquivo de configuração (`config/mongo.js`).
+## Criação do arquivo .env
+
+1. Na raiz do seu projeto, crie um arquivo chamado `.env`.
+2. Neste arquivo, você deve definir a variável `MONGO_URI` com a URI do seu banco de dados MongoDB Atlas. A URI deve seguir o seguinte formato:
+
+```bash
+MONGO_URI=mongodb+srv://seuUsuario:suaSenha@seuBancodeDados.mongodb.net/?retryWrites=true&w=majority&appName=seuBancodeDados
+```
+
+Substitua `seuUsuario`, `suaSenha` e `seuBancodeDados` pelas informações correspondentes do seu banco de dados no MongoDB Atlas.
+
+## Criação de um banco de dados no MongoDB Atlas
+
+1. Faça login na sua conta do MongoDB Atlas.
+2. Vá para a seção "Clusters" e clique no botão "Connect" do cluster que você deseja usar.
+3. Selecione a opção "Connect your application".
+4. Copie a string de conexão fornecida. Ela deve ser semelhante à string `MONGO_URI` mencionada acima.
+5. Substitua `<username>`, `<password>` e `<dbname>` na string de conexão pelas suas informações correspondentes.
+6. Cole essa string de conexão como valor para `MONGO_URI` no seu arquivo `.env`.
 
 ### Iniciar o Servidor
 
