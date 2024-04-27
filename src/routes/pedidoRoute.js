@@ -2,7 +2,63 @@ const express = require('express');
 const router = express.Router();
 const pedidosModel = require('../model/pedidos.js');
 const produtosModel = require('../model/produtos.js');
+const vendasModel = require('../model/vendas.js')
 
+
+async function realizarPedido(clienteId, produtoId) {
+    try {
+        const produto = await produtosModel.findById(produtoId);
+        if (!produto || produto.quantidadeDisponivel <= 0) {
+            throw new Error('Produto não disponível no estoque!');
+    }
+
+        const pedido = new pedidosModel({
+            cliente: clienteId,
+            produto: produtoId,
+            valorProduto: produto.valor
+        });
+        await pedido.save();
+
+        produto.quantidadeDisponivel -= 1;
+        await produto.save();
+    
+        return pedido;
+        } catch (error) {
+        console.error('Erro ao realizar pedido:', error.message);
+        throw error;
+        }
+    }
+
+async function registrarVenda(clienteId) {
+    try {
+        const pedidos = await pedidosModel.find({ cliente: clienteId }).populate('vendas').populate('produto');
+
+        let valorTotal = 0;
+
+    for (const pedido of pedidos) {
+            if (pedido.produto) {
+                if (typeof pedido.valorProduto !== 'number' || typeof pedido.produto.quantidadeDisponivel !== 'number') {
+                    throw new Error('valorProduto ou quantidadeDisponivel não é um número!');
+                }
+                    
+                valorTotal += pedido.valorProduto;
+            }
+            }
+        
+
+    const novaVenda = new vendasModel({
+        cliente: clienteId,
+        valorTotal: valorTotal
+    });
+
+        await novaVenda.save();
+    
+        return novaVenda;
+        } catch (error) {
+        console.error('Erro ao registrar venda:', error.message);
+        throw error;
+        }
+    }
 
 router.get('/', async (_, res) => {
     try {
@@ -95,12 +151,13 @@ router.delete('/:id', async (req, res) => {
         produto.quantidadeDisponivel += 1;
         await produto.save();
     
-        await pedido.remove();
+        await pedidosModel.findByIdAndDelete(id);
+
     
         return res.status(200).json({ message: 'Pedido cancelado com sucesso!' });
-        } catch (error) {
+    } catch (error) {
         return res.status(500).json({ error: error.message });
-        }
+    }
 });
 
 

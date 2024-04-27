@@ -11,15 +11,13 @@ const pedidoSchema = new mongoose.Schema({
         ref: 'produtos',
         required: true
     },
-    valor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'produtos',
-        required: true
-    },
+    valorProduto: {
+        type: Number,
+        default: 0
+        },
     vendas: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'vendas',
-        required: true
     }
     
 });
