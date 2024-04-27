@@ -1,15 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-let conn
+let conn;
 
 const connection = () => {
     if(conn) {
-        return conn
+        return conn;
     }
 
-    //caso utilize usuario e senha no seu banco, não esqueça de adicionar!
-
-    conn = mongoose.connect('mongodb://127.0.0.1:27017/local')
+    conn = mongoose.connect(process.env.MONGO_URI);
 }
 
-module.exports = connection
+module.exports = connection;
