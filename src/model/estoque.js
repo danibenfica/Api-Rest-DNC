@@ -7,9 +7,9 @@ const estoqueSchema =  mongoose.Schema({
         required: true
     },
     quantidadeDisponivel: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'produtos',
         required: true,
-        default: 0
     }
 });
 
