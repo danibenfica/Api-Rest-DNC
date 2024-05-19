@@ -1,9 +1,7 @@
 ![Captura de tela 2024-04-27 202234](https://github.com/danibenfica/Api-Rest-DNC/assets/103818625/0140465b-de9c-4e18-88f5-2d990e080b7d)
 
 ---
-# Api-Rest-DNC
-
-Este é o sexto desafio da DNC! Demorei um tempo para retomar os estudos, mas aqui estou eu, com mais um desafio concluído! Esse com certeza foi um dos mais desafiadores, quebrei bastante a cabeça e com muita ajuda e pesquisa consegui! Qualquer dúvida não hesite em perguntar, e toda sugestão é bem-vinda!
+# Api-Rest-Produtos
 
 Esta aplicação serve como um sistema de gerenciamento abrangente para negócios que lidam com vendas e estoque de produtos. Ela foi projetada para registrar e gerenciar clientes, produtos, pedidos e vendas, proporcionando uma administração eficiente desses aspectos fundamentais de um negócio comercial. É projetada para administrar clientes, produtos, pedidos, vendas e estoque. Ela disponibiliza uma API RESTful para realizar operações CRUD (Criar, Ler, Atualizar e Excluir) em cada um desses recursos.
 
